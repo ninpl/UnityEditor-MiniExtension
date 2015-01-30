@@ -17,10 +17,11 @@ Descripcion: Pequeño añadido para el motor Unit3D,Añadiendole funcionalidad a
 > Actuales
 > 
 > - Limpiar los PlayerPrefs y EditorPrefs
+> - Crear una captura de pantalla de la pantalla Escena (Unity3d PRO solo)
 
 > Futuras
 >
-> - ?
+> - Idiomas en el Editor
 
 ### Capturas
 
