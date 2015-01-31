@@ -18,6 +18,7 @@ Descripcion: Pequeño añadido para el motor Unit3D,Añadiendole funcionalidad a
 > 
 > - Limpiar los PlayerPrefs y EditorPrefs
 > - Crear una captura de pantalla de la pantalla Escena (Unity3d PRO solo)
+> - Añadida una herramienta para el Debug con RayCast
 
 > Futuras
 >
@@ -26,3 +27,5 @@ Descripcion: Pequeño añadido para el motor Unit3D,Añadiendole funcionalidad a
 ### Capturas
 
 ![Screenshot software](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/Resources/Img/ClearEditExt.png "ClearEditExt")
+![Screenshot software](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/Resources/Img/ScreenShotGOExt.png "ScreenShotGOExt")
+![Screenshot software](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/Resources/Img/RayCastDebugExt.png "RayCastDebugExt")

@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\EditorExtension\MainEditorExtension.cs" />
+    <Compile Include="Assets\Editor\EditorExtension\Templates\RayCastDebug.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

@@ -3,8 +3,10 @@ using UnityEditor;
 
 //      Main Menu
 //Class menus with different extensions
-public class MainEditorExtension
+public class MainEditorExtension : MonoBehaviour
 {
+    //MENUS
+
     [MenuItem(EditorStrings.Setup.StringDeletePrefs,false,0)]
     private static void MenuDeletePrefs()
     {
@@ -31,6 +33,92 @@ public class MainEditorExtension
         editorWindow.Show();
         editorWindow.title = "Screenshot";
     }
+
+    [MenuItem(EditorStrings.Setup.StringMenuRayCast, false, 4)]
+    public static void MenuRaycast()
+    {
+        if (Selection.activeGameObject != null)
+        {
+            if (Selection.activeGameObject.name == "RayCast Debug")
+            {
+                addNewRayCastDebug(Selection.activeGameObject);
+            }
+            else
+            {
+                if (GameObject.Find("RayCast Debug") != null)
+                {
+                    EditorUtility.DisplayDialog(EditorStrings.RayCastDebug.StringRayCastDebugWarning, EditorStrings.RayCastDebug.StringNeedRayCast, EditorStrings.RayCastDebug.StringOK);
+                }
+                else
+                {
+                    createNewRayCastDebug();
+                }
+            }
+        }
+        else
+        {
+            if (GameObject.Find("RayCast Debug") != null)
+            {
+                addNewRayCastDebug(GameObject.Find("RayCast Debug"));
+            }
+            else
+            {
+                createNewRayCastDebug();
+            }
+        }
+    }
+
+
+    //COMPONENT
+
+    [MenuItem(EditorStrings.Setup.StringComponentRayCast, false, 5)]
+    public static void ComponentRaycast()
+    {
+        if (Selection.activeGameObject != null)
+        {
+            if (Selection.activeGameObject.name == "RayCast Debug")
+            {
+                addNewRayCastDebug(Selection.activeGameObject);
+            }
+            else
+            {
+                if (GameObject.Find("RayCast Debug") != null)
+                {
+                    EditorUtility.DisplayDialog(EditorStrings.RayCastDebug.StringRayCastDebugWarning, EditorStrings.RayCastDebug.StringNeedRayCast, EditorStrings.RayCastDebug.StringOK);
+                }
+                else
+                {
+                    createNewRayCastDebug();
+                }
+            }
+        }
+        else
+        {
+            if (GameObject.Find("RayCast Debug") != null)
+            {
+                addNewRayCastDebug(GameObject.Find("RayCast Debug"));
+            }
+            else
+            {
+                createNewRayCastDebug();
+            }
+        }
+    }
+
+
+    //EVENTS
+    private static void createNewRayCastDebug()
+    {
+        GameObject go = new GameObject("RayCast Debug");
+        go.transform.position = Vector3.zero;
+        go.AddComponent(typeof(RayCastDebug));
+        Debug.Log(EditorStrings.RayCastDebug.StringDebug01);
+    }
+    private static void addNewRayCastDebug(GameObject go)
+    {
+        go.AddComponent(typeof(RayCastDebug));
+        Debug.Log(EditorStrings.RayCastDebug.StringDebug02);
+    }
 }
 
 //      Editor extension screenshot
@@ -39,22 +127,21 @@ public class MainEditorExtension
 public class ScreemShotInstant : EditorWindow
 {
 
-    public static bool SendCall = false;
+    public static bool SendCall                 = false;
 
-    public string lastScreenshot = "";
+    public string lastScreenshot                = "";
     public Camera Camera;
 
     private float lastTime;
-    private int resWidth = Screen.width * 4;
-    private int resHeight = Screen.height * 4;
-    private bool takeHiResShot = false;
-    private int scale = 1;
-    private string path = "";
-    private bool showPreview = true;
+    private int resWidth                        = Screen.width * 4;
+    private int resHeight                       = Screen.height * 4;
+    private bool takeHiResShot                  = false;
+    private int scale                           = 1;
+    private string path                         = "";
     private RenderTexture renderTexture;
-    private bool isTransparent = false;
-    private bool isViewSettings = false;
-    private string nameScreen = "";
+    private bool isTransparent                  = false;
+    private bool isViewSettings                 = false;
+    private string nameScreen                   = "";
 
     void Update()
     {
@@ -311,6 +398,87 @@ public class ScreemShotInstant : EditorWindow
 
 }
 
+//      Editor extension RayCast
+//class to create a raycash and check the distance
+[ExecuteInEditMode]
+[CustomEditor(typeof(RayCastDebug))]
+public class RayCastDebugEditor : Editor
+{
+    RayCastDebug _target;
+    GUIStyle style = new GUIStyle();
+    public static int count = 0;
+
+    void OnEnable()
+    {
+        style.fontStyle = FontStyle.Bold;
+        style.normal.textColor = Color.white;
+        _target = (RayCastDebug)target;
+        if (!_target.initialized)
+        {
+            _target.initialized = true;
+            _target.rayCastDebugName = "RayCast Debug " + ++count;
+            _target.initialName = _target.rayCastDebugName;
+        }
+    }
+
+    public override void OnInspectorGUI()
+    {
+
+        if (_target.rayCastDebugName == "")
+        {
+            _target.rayCastDebugName = _target.initialName;
+        }
+
+        EditorGUILayout.BeginVertical();
+
+        EditorGUILayout.PrefixLabel(EditorStrings.RayCastDebug.StringName);
+        _target.rayCastDebugName = EditorGUILayout.TextField(_target.rayCastDebugName, GUILayout.ExpandWidth(false));
+
+        EditorGUILayout.Separator();
+        EditorGUILayout.Separator();
+
+        EditorGUILayout.PrefixLabel(EditorStrings.RayCastDebug.StringGizmoSize);
+        _target.gizmoRadius = Mathf.Clamp(EditorGUILayout.Slider(_target.gizmoRadius, 0.1f, 3.0f, GUILayout.ExpandWidth(false)), 0.1f, 100);
+
+        EditorGUILayout.Separator();
+
+        EditorGUILayout.PrefixLabel(EditorStrings.RayCastDebug.StringColorLine);
+        _target.lineColor = EditorGUILayout.ColorField(_target.lineColor, GUILayout.ExpandWidth(false));
+
+        EditorGUILayout.Separator();
+        EditorGUILayout.Separator();
+
+        _target.scaleToPixels = EditorGUILayout.Toggle(EditorStrings.RayCastDebug.StringShowScale, _target.scaleToPixels, GUILayout.ExpandWidth(false));
+
+        _target.pixelPerUnit = EditorGUILayout.IntField(EditorStrings.RayCastDebug.StringPixelUnit, _target.pixelPerUnit, GUILayout.ExpandWidth(false));
+
+        EditorGUILayout.EndVertical();
+
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(_target);
+        }
+    }
+
+    void OnSceneGUI()
+    {
+        Undo.RecordObject(_target, "rayCast debug undo");
+        float distance = Vector3.Distance(_target.startPoint, _target.endPoint);
+        float scalePerPixel = distance * _target.pixelPerUnit;
+
+        if (_target.scaleToPixels)
+        {
+            Handles.Label(_target.endPoint, EditorStrings.RayCastDebug.StringAuxInfo1 + distance + EditorStrings.RayCastDebug.StringAuxInfo2 + scalePerPixel + EditorStrings.RayCastDebug.StrinPX, style);
+        }
+        else
+        {
+            Handles.Label(_target.endPoint, EditorStrings.RayCastDebug.StringAuxInfo1 + distance, style);
+        }
+        _target.startPoint = Handles.PositionHandle(_target.startPoint, Quaternion.identity);
+        _target.endPoint = Handles.PositionHandle(_target.endPoint, Quaternion.identity);
+    }
+}
+
 //      Editor String
 //Class containing the strings
 public class EditorStrings
@@ -322,6 +490,8 @@ public class EditorStrings
         public const string StringDeleteEditorPrefs                         = StringMainMenu + "/PlayerPrefs/Clear EditorPrefs";
         public const string StringScreenShotInstant                         = StringMainMenu + "/ScreenShot/Instant Screenshot %g";
         public const string StringScreenShotSettings                        = StringMainMenu + "/ScreenShot/Screenshot Settings";
+        public const string StringMenuRayCast                               = StringMainMenu + "/Debug RayCast/Create RayCast";
+        public const string StringComponentRayCast                          = "Assets/Create/RayCast Debug";
     }
 
     public class ScreenShot
@@ -362,6 +532,25 @@ public class EditorStrings
         public const string StringDebug01                                   = StringMDebug + "Path Set";
         public const string StringDebug02                                   = StringMDebug + "Opening File ";
         public const string StringDebug03                                   = StringMDebug + "Taking Screenshot";
+    }
+
+    public class RayCastDebug
+    {
+        public const string StringRayCastDebugWarning                       = "RayCast Debug Warning";
+        public const string StringNeedRayCast                               = "You need an Raycast Debug to create a copy.";
+        public const string StringOK                                        = "OK";
+        public const string StringName                                      = "Name";
+        public const string StringGizmoSize                                 = "Gizmo Size";
+        public const string StringColorLine                                 = "Color Line";
+        public const string StringShowScale                                 = "Show Scale";
+        public const string StringPixelUnit                                 = "Pixel unit";
+        public const string StringAuxInfo1                                  = "       Distance from Start point: ";
+        public const string StringAuxInfo2                                  = " - Scale per pixel: ";
+        public const string StrinPX                                         = "px";
+
+        public const string StringRCDebug                                   = "{e}[RayCast Debug] ";
+        public const string StringDebug01                                   = StringRCDebug + "Create RayCast Debug";
+        public const string StringDebug02                                   = StringRCDebug + "Add RayCast Debug";
     }
 }
 
