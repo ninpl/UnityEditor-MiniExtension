@@ -19,10 +19,11 @@ Descripcion: Pequeño añadido para el motor Unit3D,Añadiendole funcionalidad a
 > - Limpiar los PlayerPrefs y EditorPrefs
 > - Crear una captura de pantalla de la pantalla Escena (Unity3d PRO solo)
 > - Añadida una herramienta para el Debug con RayCast
+> - Añadido Idiomas diferentes para el editor(Ingles / Español)
 
 > Futuras
 >
-> - Idiomas en el Editor
+> - 
 
 ### Capturas
 
