@@ -1,5 +1,9 @@
 fileFormatVersion: 2
 guid: 8963445d15c425e49bd3b266341582c8
+labels:
+- Script
+- Main
+- Editor
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []

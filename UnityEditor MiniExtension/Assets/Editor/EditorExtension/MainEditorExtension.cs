@@ -73,6 +73,7 @@ public class MainEditorExtension : MonoBehaviour
         }
     }
 
+    //Class Scriptable Object Menu
     public class ScriptableObjectMenu
     {
         [MenuItem(EditorStrings.Setup.StringScriptableObject1,false,5)]
@@ -84,7 +85,7 @@ public class MainEditorExtension : MonoBehaviour
                                         where t.IsSubclassOf(typeof(ScriptableObject))
                                         select t).ToArray();
 
-            var window = EditorWindow.GetWindow<ScriptableObjectWindows>(true, "Create a new ScriptableObject", true);
+            var window = EditorWindow.GetWindow<ScriptableObjectWindows>(true, EditorStrings.ScriptableObject.StringScriptableObjectNewScripta, true);
             window.ShowPopup();
 
             window.Types = allScriptableObjects;
@@ -528,7 +529,6 @@ public class ScriptableObjectWindows : EditorWindow
 {
     private int selectedIndex;
     private string[] names;
-
     private Type[] types;
 
     public Type[] Types
@@ -543,10 +543,10 @@ public class ScriptableObjectWindows : EditorWindow
 
     public void OnGUI()
     {
-        GUILayout.Label("ScriptableObject Class");
+        GUILayout.Label(EditorStrings.ScriptableObject.StringScriptableObjectClass);
         selectedIndex = EditorGUILayout.Popup(selectedIndex, names);
 
-        if (GUILayout.Button("Create"))
+        if (GUILayout.Button(EditorStrings.ScriptableObject.StringScriptableObjectCreate))
         {
             var asset = ScriptableObject.CreateInstance(types[selectedIndex]);
             ProjectWindowUtil.StartNameEditingIfProjectWindowExists(
@@ -556,6 +556,7 @@ public class ScriptableObjectWindows : EditorWindow
                 AssetPreview.GetMiniThumbnail(asset),
                 null);
 
+            Debug.Log(EditorStrings.ScriptableObject.StringScriptableObjectDebug01);
             Close();
         }
     }
@@ -641,7 +642,12 @@ public class EditorStrings
 
     public class ScriptableObject
     {
-        public static string StringScriptableObject = "RayCast Debug Warning";
+        public static string StringScriptableObjectClass                    = "ScriptableObject Class";
+        public static string StringScriptableObjectCreate                   = "Create";
+        public static string StringScriptableObjectNewScripta               = "Create a new ScriptableObject";
+
+        public static string StringScriptableObjectDebug                    = "{e}[ScriptableObject Debug] ";
+        public static string StringScriptableObjectDebug01                  = StringScriptableObjectDebug + "Create Scriptable Object";
     }
 }
 
@@ -704,6 +710,13 @@ public class EditorTranslator
         EditorStrings.RayCastDebug.StringRCDebug                                = "{e}[RayCast Debug] ";
         EditorStrings.RayCastDebug.StringDebug01                                = EditorStrings.RayCastDebug.StringRCDebug + "Create RayCast Debug";
         EditorStrings.RayCastDebug.StringDebug02                                = EditorStrings.RayCastDebug.StringRCDebug + "Add RayCast Debug";
+
+        EditorStrings.ScriptableObject.StringScriptableObjectClass              = "ScriptableObject Class";
+        EditorStrings.ScriptableObject.StringScriptableObjectCreate             = "Create";
+        EditorStrings.ScriptableObject.StringScriptableObjectNewScripta         = "Create a new ScriptableObject";
+
+        EditorStrings.ScriptableObject.StringScriptableObjectDebug              = "{e}[ScriptableObject Debug] ";
+        EditorStrings.ScriptableObject.StringScriptableObjectDebug01            = EditorStrings.ScriptableObject.StringScriptableObjectDebug + "Create Scriptable Object";
     }
 
     public static void Spanish()
@@ -761,6 +774,13 @@ public class EditorTranslator
         EditorStrings.RayCastDebug.StringRCDebug                                = "{e}[RayCast Debug] ";
         EditorStrings.RayCastDebug.StringDebug01                                = EditorStrings.RayCastDebug.StringRCDebug + "Creado RayCast Debug";
         EditorStrings.RayCastDebug.StringDebug02                                = EditorStrings.RayCastDebug.StringRCDebug + "Añadido RayCast Debug";
+
+        EditorStrings.ScriptableObject.StringScriptableObjectClass              = "ScriptableObject Class";
+        EditorStrings.ScriptableObject.StringScriptableObjectCreate             = "Crear";
+        EditorStrings.ScriptableObject.StringScriptableObjectNewScripta         = "Crear un nuevo ScriptableObject";
+
+        EditorStrings.ScriptableObject.StringScriptableObjectDebug              = "{e}[ScriptableObject Debug] ";
+        EditorStrings.ScriptableObject.StringScriptableObjectDebug01            = EditorStrings.ScriptableObject.StringScriptableObjectDebug + "Creado Scriptable Object";
     }
 }
 
