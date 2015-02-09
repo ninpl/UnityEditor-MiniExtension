@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using UnityEditor.ProjectWindowCallback;
+using System;
+using System.Linq;
+
 
 //      Main Menu
 //Class menus with different extensions
@@ -491,6 +495,42 @@ public class RayCastDebugEditor : Editor
     }
 }
 
+public class ScriptableObjectEditorWindow : EditorWindow
+{
+    private int selectedIndex;
+    private string[] names;
+    private Type[] types;
+
+    public Type[] Types
+    {
+        get { return types; }
+        set
+        {
+            types = value;
+            names = types.Select(t => t.FullName).ToArray();
+        }
+    }
+
+    public void OnGUI()
+    {
+        GUILayout.Label("ScriptableObject Class");
+        selectedIndex = EditorGUILayout.Popup(selectedIndex, names);
+
+        if (GUILayout.Button("Create"))
+        {
+            var asset = ScriptableObject.CreateInstance(types[selectedIndex]);
+            ProjectWindowUtil.StartNameEditingIfProjectWindowExists(
+                asset.GetInstanceID(),
+                ScriptableObject.CreateInstance<EndNameEdit>(),
+                string.Format("{0}.asset", names[selectedIndex]),
+                AssetPreview.GetMiniThumbnail(asset),
+                null);
+
+            Close();
+        }
+    }
+}
+
 //      Editor String
 //Class containing the strings
 public class EditorStrings
@@ -506,6 +546,8 @@ public class EditorStrings
         public const string StringComponentRayCast                          = "Assets/Create/RayCast Debug";
         public const string StringMenuLanguageEnglish                       = StringMainMenu + "/Language/English";
         public const string StringMenuLanguageSpanish                       = StringMainMenu + "/Language/Spanish";
+        public const string StringScriptableObject1                         = StringMainMenu + "/Create/ScriptableObject";
+        public const string StringScriptableObject2                         = "Assets/Create/ScriptableObject";
     }
 
     public class ScreenShot
@@ -566,14 +608,17 @@ public class EditorStrings
         public static string StringDebug01                                   = StringRCDebug + "Create RayCast Debug";
         public static string StringDebug02                                   = StringRCDebug + "Add RayCast Debug";
     }
+
+    public class ScriptableObject
+    {
+        public static string StringScriptableObject = "RayCast Debug Warning";
+    }
 }
 
 //      Editor Translator
 //Class translator tools editor
 public class EditorTranslator
 {
-
-
     public static void English()
     {
         EditorStrings.ScreenShot.StringResolution                                = "Resolution";
@@ -633,60 +678,68 @@ public class EditorTranslator
 
     public static void Spanish()
     {
-        EditorStrings.ScreenShot.StringResolution = "Resolucion";
-        EditorStrings.ScreenShot.StringWindows = "Windows";
-        EditorStrings.ScreenShot.StringResSettings = "Ajustes Resolucion";
-        EditorStrings.ScreenShot.StringSetResScreen = "Resolucion Pantalla";
-        EditorStrings.ScreenShot.StringNameSettings = "Ajustes de Nombre";
-        EditorStrings.ScreenShot.StringSetNameDefaut = "Nombre por defecto";
-        EditorStrings.ScreenShot.StringNameScreen = "Pantalla";
-        EditorStrings.ScreenShot.StringNameScreenShot = "Nombre captura pantalla: ";
-        EditorStrings.ScreenShot.StringWidth = "Ancho";
-        EditorStrings.ScreenShot.StringHeight = "Alto";
-        EditorStrings.ScreenShot.StringScaleScreen = "Escala Ventana";
-        EditorStrings.ScreenShot.StringScale = "Escala";
-        EditorStrings.ScreenShot.StringPathSettings = "Ajustes Ruta";
-        EditorStrings.ScreenShot.StringBrowse = "Buscar";
-        EditorStrings.ScreenShot.StringPath = "Ruta";
-        EditorStrings.ScreenShot.StringCameraSettings = "Ajustes Camara";
-        EditorStrings.ScreenShot.StringSelectCameraScene = "Seleccionar Camara Escena";
-        EditorStrings.ScreenShot.StringTextureSettings = "Ajustes Texturas";
-        EditorStrings.ScreenShot.StringTransparentBackground = "Fondo Transparente";
-        EditorStrings.ScreenShot.StringDefaultOptions = "Opciones por defecto";
-        EditorStrings.ScreenShot.StringSetToScreenSize = "Tamaño Pantalla";
-        EditorStrings.ScreenShot.StringDefaultSize = "Tamaño por defecto";
-        EditorStrings.ScreenShot.StringScreenshotres = "Resolucion captura de pantalla [ ";
-        EditorStrings.ScreenShot.StringX = " x ";
-        EditorStrings.ScreenShot.StringPX = " px ]";
-        EditorStrings.ScreenShot.StringTakeScreenShot = "Tomar Captura de pantalla";
-        EditorStrings.ScreenShot.StringPathToSaveImages = "Ruta para guardar imagen";
-        EditorStrings.ScreenShot.StringScreenShotName = "Nombre captura de pantalla [ ";
-        EditorStrings.ScreenShot.StringOpenLastScreenshot = "Abrir ultima captura";
-        EditorStrings.ScreenShot.StringOpenFolder = "Abrir carpeta";
-        EditorStrings.ScreenShot.StringPathImages = "Ruta Imagenes";
+        EditorStrings.ScreenShot.StringResolution                               = "Resolucion";
+        EditorStrings.ScreenShot.StringWindows                                  = "Windows";
+        EditorStrings.ScreenShot.StringResSettings                              = "Ajustes Resolucion";
+        EditorStrings.ScreenShot.StringSetResScreen                             = "Resolucion Pantalla";
+        EditorStrings.ScreenShot.StringNameSettings                             = "Ajustes de Nombre";
+        EditorStrings.ScreenShot.StringSetNameDefaut                            = "Nombre por defecto";
+        EditorStrings.ScreenShot.StringNameScreen                               = "Pantalla";
+        EditorStrings.ScreenShot.StringNameScreenShot                           = "Nombre captura pantalla: ";
+        EditorStrings.ScreenShot.StringWidth                                    = "Ancho";
+        EditorStrings.ScreenShot.StringHeight                                   = "Alto";
+        EditorStrings.ScreenShot.StringScaleScreen                              = "Escala Ventana";
+        EditorStrings.ScreenShot.StringScale                                    = "Escala";
+        EditorStrings.ScreenShot.StringPathSettings                             = "Ajustes Ruta";
+        EditorStrings.ScreenShot.StringBrowse                                   = "Buscar";
+        EditorStrings.ScreenShot.StringPath                                     = "Ruta";
+        EditorStrings.ScreenShot.StringCameraSettings                           = "Ajustes Camara";
+        EditorStrings.ScreenShot.StringSelectCameraScene                        = "Seleccionar Camara Escena";
+        EditorStrings.ScreenShot.StringTextureSettings                          = "Ajustes Texturas";
+        EditorStrings.ScreenShot.StringTransparentBackground                    = "Fondo Transparente";
+        EditorStrings.ScreenShot.StringDefaultOptions                           = "Opciones por defecto";
+        EditorStrings.ScreenShot.StringSetToScreenSize                          = "Tamaño Pantalla";
+        EditorStrings.ScreenShot.StringDefaultSize                              = "Tamaño por defecto";
+        EditorStrings.ScreenShot.StringScreenshotres                            = "Resolucion captura de pantalla [ ";
+        EditorStrings.ScreenShot.StringX                                        = " x ";
+        EditorStrings.ScreenShot.StringPX                                       = " px ]";
+        EditorStrings.ScreenShot.StringTakeScreenShot                           = "Tomar Captura de pantalla";
+        EditorStrings.ScreenShot.StringPathToSaveImages                         = "Ruta para guardar imagen";
+        EditorStrings.ScreenShot.StringScreenShotName                           = "Nombre captura de pantalla [ ";
+        EditorStrings.ScreenShot.StringOpenLastScreenshot                       = "Abrir ultima captura";
+        EditorStrings.ScreenShot.StringOpenFolder                               = "Abrir carpeta";
+        EditorStrings.ScreenShot.StringPathImages                               = "Ruta Imagenes";
 
-        EditorStrings.ScreenShot.StringMDebug = "{e}[CapturaPantalla] ";
-        EditorStrings.ScreenShot.StringDebug01 = EditorStrings.ScreenShot.StringMDebug + "Ruta Seleccionada";
-        EditorStrings.ScreenShot.StringDebug02 = EditorStrings.ScreenShot.StringMDebug + "Abriendo Archivo ";
-        EditorStrings.ScreenShot.StringDebug03 = EditorStrings.ScreenShot.StringMDebug + "Tomando Captura";
+        EditorStrings.ScreenShot.StringMDebug                                   = "{e}[CapturaPantalla] ";
+        EditorStrings.ScreenShot.StringDebug01                                  = EditorStrings.ScreenShot.StringMDebug + "Ruta Seleccionada";
+        EditorStrings.ScreenShot.StringDebug02                                  = EditorStrings.ScreenShot.StringMDebug + "Abriendo Archivo ";
+        EditorStrings.ScreenShot.StringDebug03                                  = EditorStrings.ScreenShot.StringMDebug + "Tomando Captura";
 
 
-        EditorStrings.RayCastDebug.StringRayCastDebugWarning = "Advertencia RayCast Debug";
-        EditorStrings.RayCastDebug.StringNeedRayCast = "Necesitas una copia en escena de RayCast Debug";
-        EditorStrings.RayCastDebug.StringOK = "OK";
-        EditorStrings.RayCastDebug.StringName = "Nombre";
-        EditorStrings.RayCastDebug.StringGizmoSize = "Gizmo Tamaño";
-        EditorStrings.RayCastDebug.StringColorLine = "Color Linea";
-        EditorStrings.RayCastDebug.StringShowScale = "Mostrar Escala";
-        EditorStrings.RayCastDebug.StringPixelUnit = "Pixel unidades";
-        EditorStrings.RayCastDebug.StringAuxInfo1 = "       Distancia desde el punto inicial: ";
-        EditorStrings.RayCastDebug.StringAuxInfo2 = " - Escala por pixel: ";
-        EditorStrings.RayCastDebug.StrinPX = "px";
+        EditorStrings.RayCastDebug.StringRayCastDebugWarning                    = "Advertencia RayCast Debug";
+        EditorStrings.RayCastDebug.StringNeedRayCast                            = "Necesitas una copia en escena de RayCast Debug";
+        EditorStrings.RayCastDebug.StringOK                                     = "OK";
+        EditorStrings.RayCastDebug.StringName                                   = "Nombre";
+        EditorStrings.RayCastDebug.StringGizmoSize                              = "Gizmo Tamaño";
+        EditorStrings.RayCastDebug.StringColorLine                              = "Color Linea";
+        EditorStrings.RayCastDebug.StringShowScale                              = "Mostrar Escala";
+        EditorStrings.RayCastDebug.StringPixelUnit                              = "Pixel unidades";
+        EditorStrings.RayCastDebug.StringAuxInfo1                               = "       Distancia desde el punto inicial: ";
+        EditorStrings.RayCastDebug.StringAuxInfo2                               = " - Escala por pixel: ";
+        EditorStrings.RayCastDebug.StrinPX                                      = "px";
 
-        EditorStrings.RayCastDebug.StringRCDebug = "{e}[RayCast Debug] ";
-        EditorStrings.RayCastDebug.StringDebug01 = EditorStrings.RayCastDebug.StringRCDebug + "Creado RayCast Debug";
-        EditorStrings.RayCastDebug.StringDebug02 = EditorStrings.RayCastDebug.StringRCDebug + "Añadido RayCast Debug";
+        EditorStrings.RayCastDebug.StringRCDebug                                = "{e}[RayCast Debug] ";
+        EditorStrings.RayCastDebug.StringDebug01                                = EditorStrings.RayCastDebug.StringRCDebug + "Creado RayCast Debug";
+        EditorStrings.RayCastDebug.StringDebug02                                = EditorStrings.RayCastDebug.StringRCDebug + "Añadido RayCast Debug";
     }
 }
 
-
+//      Editor Internal Class
+//Editor internal class
+internal class EndNameEdit : EndNameEditAction
+{
+    public override void Action(int instanceId, string pathName, string resourceFile)
+    {
+        AssetDatabase.CreateAsset(EditorUtility.InstanceIDToObject(instanceId), AssetDatabase.GenerateUniqueAssetPath(pathName));
+    }
+}

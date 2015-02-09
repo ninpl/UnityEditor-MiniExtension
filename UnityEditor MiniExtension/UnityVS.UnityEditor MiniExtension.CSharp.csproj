@@ -5,17 +5,17 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4D2592B4-24C8-C9E5-3E0B-7AEA5E8D6FB1}</ProjectGuid>
+    <ProjectGuid>{30BACA1C-67A7-6415-2DD4-ABEDCCDD813F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace></RootNamespace>
-    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Editor:5</UnityProjectType>
+    <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>4.6.1f1</UnityVersion>
   </PropertyGroup>
@@ -52,27 +52,9 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Graphs">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
-    </Reference>
-    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
-      <HintPath>Assets\Editor\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
-    </Reference>
-    <Reference Include="SyntaxTree.VisualStudio.Unity.Messaging">
-      <HintPath>Assets\Editor\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityVS.VersionSpecific">
-      <HintPath>Assets\Editor\UnityVS\Editor\UnityVS.VersionSpecific.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Editor\EditorExtension\Helpers\ScriptableObjectHelper.cs" />
-    <Compile Include="Assets\Editor\EditorExtension\MainEditorExtension.cs" />
-    <Compile Include="Assets\Editor\EditorExtension\Templates\ClassTemplateTest.cs" />
-    <Compile Include="Assets\Editor\EditorExtension\Templates\RayCastDebug.cs" />
+    <Compile Include="Assets\Second.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

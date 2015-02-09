@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.UnityEditor MiniExtension.CSharp.Editor", "UnityVS.UnityEditor MiniExtension.CSharp.Editor.csproj", "{4D2592B4-24C8-C9E5-3E0B-7AEA5E8D6FB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.UnityEditor MiniExtension.CSharp", "UnityVS.UnityEditor MiniExtension.CSharp.csproj", "{30BACA1C-67A7-6415-2DD4-ABEDCCDD813F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{4D2592B4-24C8-C9E5-3E0B-7AEA5E8D6FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D2592B4-24C8-C9E5-3E0B-7AEA5E8D6FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D2592B4-24C8-C9E5-3E0B-7AEA5E8D6FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30BACA1C-67A7-6415-2DD4-ABEDCCDD813F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30BACA1C-67A7-6415-2DD4-ABEDCCDD813F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30BACA1C-67A7-6415-2DD4-ABEDCCDD813F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30BACA1C-67A7-6415-2DD4-ABEDCCDD813F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
