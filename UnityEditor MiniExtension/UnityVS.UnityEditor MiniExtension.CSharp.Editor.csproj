@@ -69,9 +69,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Editor\EditorExtension\Helpers\ScriptableObjectHelper.cs" />
+    <ProjectReference Include="UnityVS.UnityEditor MiniExtension.CSharp.csproj">
+      <Project>{30BACA1C-67A7-6415-2DD4-ABEDCCDD813F}</Project>
+      <Name>UnityVS.UnityEditor MiniExtension.CSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Editor\EditorExtension\MainEditorExtension.cs" />
-    <Compile Include="Assets\Editor\EditorExtension\Templates\ClassTemplateTest.cs" />
     <Compile Include="Assets\Editor\EditorExtension\Templates\RayCastDebug.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />

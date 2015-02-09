@@ -2,8 +2,9 @@
 using UnityEditor;
 using UnityEditor.ProjectWindowCallback;
 using System;
+using System.Collections;
 using System.Linq;
-
+using System.Reflection;
 
 //      Main Menu
 //Class menus with different extensions
@@ -71,6 +72,32 @@ public class MainEditorExtension : MonoBehaviour
             }
         }
     }
+
+    public class ScriptableObjectMenu
+    {
+        [MenuItem(EditorStrings.Setup.StringScriptableObject1,false,5)]
+        [MenuItem(EditorStrings.Setup.StringScriptableObject2)]
+        public static void MenuScriptableObject()
+        {
+            var assembly = GetAssembly();
+            var allScriptableObjects = (from t in assembly.GetTypes()
+                                        where t.IsSubclassOf(typeof(ScriptableObject))
+                                        select t).ToArray();
+
+            var window = EditorWindow.GetWindow<ScriptableObjectWindows>(true, "Create a new ScriptableObject", true);
+            window.ShowPopup();
+
+            window.Types = allScriptableObjects;
+        }
+
+        private static Assembly GetAssembly()
+        {
+            return Assembly.Load(new AssemblyName("Assembly-CSharp"));
+        }
+    }
+
+
+    //LANGUAGES
 
     [MenuItem(EditorStrings.Setup.StringMenuLanguageEnglish, false, 100)]
     public static void MenuLanguageEnglish()
@@ -495,10 +522,13 @@ public class RayCastDebugEditor : Editor
     }
 }
 
-public class ScriptableObjectEditorWindow : EditorWindow
+//      Editor ScriptableObjects
+//Class Scriptable objects windows
+public class ScriptableObjectWindows : EditorWindow
 {
     private int selectedIndex;
     private string[] names;
+
     private Type[] types;
 
     public Type[] Types
@@ -734,8 +764,8 @@ public class EditorTranslator
     }
 }
 
-//      Editor Internal Class
-//Editor internal class
+//      Internal Scriptable Object
+//Class Internal Scriptable Object
 internal class EndNameEdit : EndNameEditAction
 {
     public override void Action(int instanceId, string pathName, string resourceFile)
@@ -743,3 +773,5 @@ internal class EndNameEdit : EndNameEditAction
         AssetDatabase.CreateAsset(EditorUtility.InstanceIDToObject(instanceId), AssetDatabase.GenerateUniqueAssetPath(pathName));
     }
 }
+
+
