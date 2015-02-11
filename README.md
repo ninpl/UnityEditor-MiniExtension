@@ -20,13 +20,24 @@ Descripcion: Pequeño añadido para el motor Unit3D,Añadiendole funcionalidad a
 > - Crear una captura de pantalla de la pantalla Escena (Unity3d PRO solo)
 > - Añadida una herramienta para el Debug con RayCast
 > - Añadido Idiomas diferentes para el editor(Ingles / Español)
+> - Añadido Manager ScriptableObject
+> - Añadido About.
 
 > Futuras
 >
-> - 
+> - Console
+> - Translator txt
 
 ### Capturas
 
+Limpiar PlayerPrefs y EditorPrefs
 ![Screenshot software](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/Resources/Img/ClearEditExt.png "ClearEditExt")
+
+Tomar captura de pantalla
 ![Screenshot software](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/Resources/Img/ScreenShotGOExt.png "ScreenShotGOExt")
+
+Crear un Debug RayCast
 ![Screenshot software](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/Resources/Img/RayCastDebugExt.png "RayCastDebugExt")
+
+Crear un asset (ScriptableObject)
+![Screenshot software](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/Resources/Img/ScriptableObjectExt.png "ScriptableObjectExt")

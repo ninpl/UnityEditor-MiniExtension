@@ -1,0 +1,39 @@
+[0.0.11]
+- [RELEASE] Add Changelog in Editor/About.
+- [UPDATE] Update Translator.
+- [UPDATE] Update Readmy GitHub.
+
+[0.0.10]
+- [FIX] Fix error ScriptableObject.
+- [UPDATE] Update Translator.
+
+[0.0.9]
+- [RELEASE] Add ScriptableObject funcionality.
+
+[0.0.8]
+- [UPDATE] Update Readmy GitHub.
+
+[0.0.7]
+- [RELEASE] Add Translator Editor.
+- [UPDATE] Update Debug Raycash and ScreemShoot Mains.
+
+[0.0.6]
+- [UPDATE] Add Debug RayCash.
+
+[0.0.5]
+- [UPDATE] Update Readmy GitHub.
+
+[0.0.4]
+- [FIX] ScreemShoot Editor Main.
+
+[0.0.3]
+- [RELEASE] Add ScreemShoot Editor Funcionality.
+
+[0.0.2]
+- [UPDATE] Update Readmy GitHub.
+
+[0.0.1]
+- [RELEASE] Add funcionality (Clear PlayerPref / EditorPref).
+
+[0.0.1]
+- Initial Version.

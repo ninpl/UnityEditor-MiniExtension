@@ -28,6 +28,7 @@ public class MainEditorExtension : MonoBehaviour
     public static void MenuScreenShot()
     {
         ScreemShotInstant.SendCall = true;
+        Load();
     }
 
     [MenuItem(EditorStrings.Setup.StringScreenShotSettings, false, 3)]
@@ -37,11 +38,13 @@ public class MainEditorExtension : MonoBehaviour
         editorWindow.autoRepaintOnSceneChange = true;
         editorWindow.Show();
         editorWindow.title = "Screenshot";
+        Load();
     }
 
     [MenuItem(EditorStrings.Setup.StringMenuRayCast, false, 4)]
     public static void MenuRaycast()
     {
+        Load();
         if (Selection.activeGameObject != null)
         {
             if (Selection.activeGameObject.name == "RayCast Debug")
@@ -80,6 +83,7 @@ public class MainEditorExtension : MonoBehaviour
         [MenuItem(EditorStrings.Setup.StringScriptableObject2)]
         public static void MenuScriptableObject()
         {
+            Load();
             var assembly = GetAssembly();
             var allScriptableObjects = (from t in assembly.GetTypes()
                                         where t.IsSubclassOf(typeof(ScriptableObject))
@@ -97,6 +101,16 @@ public class MainEditorExtension : MonoBehaviour
         }
     }
 
+    [MenuItem(EditorStrings.Setup.StringAbout, false, 99)]
+    public static void MenuAboutWin()
+    {
+        Load();
+        EditorWindow editorWindow = EditorWindow.GetWindow(typeof(AboutWindows));
+        editorWindow.autoRepaintOnSceneChange = true;
+        editorWindow.Show();
+        editorWindow.title = EditorStrings.About.StringAboutTitle;
+    }
+
 
     //LANGUAGES
 
@@ -104,12 +118,16 @@ public class MainEditorExtension : MonoBehaviour
     public static void MenuLanguageEnglish()
     {
         EditorTranslator.English();
+        EditorStrings.Data._Languaje = "ENG";
+        EditorPrefs.SetString("EDITORLanguaje", EditorStrings.Data._Languaje);
     }
 
     [MenuItem(EditorStrings.Setup.StringMenuLanguageSpanish, false, 101)]
     public static void MenuLanguageSpanish()
     {
         EditorTranslator.Spanish();
+        EditorStrings.Data._Languaje = "ESP";
+        EditorPrefs.SetString("EDITORLanguaje", EditorStrings.Data._Languaje);
     }
 
 
@@ -118,6 +136,7 @@ public class MainEditorExtension : MonoBehaviour
     [MenuItem(EditorStrings.Setup.StringComponentRayCast, false, 5)]
     public static void ComponentRaycast()
     {
+        Load();
         if (Selection.activeGameObject != null)
         {
             if (Selection.activeGameObject.name == "RayCast Debug")
@@ -162,6 +181,11 @@ public class MainEditorExtension : MonoBehaviour
     {
         go.AddComponent(typeof(RayCastDebug));
         Debug.Log(EditorStrings.RayCastDebug.StringDebug02);
+    }
+
+    public static void Load()
+    {
+        EditorPrefs.GetString("EDITORLanguaje");
     }
 }
 
@@ -562,6 +586,51 @@ public class ScriptableObjectWindows : EditorWindow
     }
 }
 
+//      Editor About Windows
+//Class editor about windows log
+public class AboutWindows : EditorWindow
+{
+    public string content;
+    public Vector2 scrollPosition = new Vector2(50,50);
+
+    void Update()
+    {
+        switch (EditorStrings.Data._Languaje)
+        {
+            case "ENG":
+                TextAsset txt = (TextAsset)Resources.Load("ChangeLogENG", typeof(TextAsset));
+                content = txt.text;
+                break;
+
+            case "ESP":
+                TextAsset txt2 = (TextAsset)Resources.Load("ChangeLogESP", typeof(TextAsset));
+                content = txt2.text;
+                break;
+
+            default:
+                TextAsset txt3 = (TextAsset)Resources.Load("ChangeLogENG", typeof(TextAsset));
+                content = txt3.text;
+                break;
+        }
+        
+    }
+
+    void OnGUI()
+    {
+        GUILayout.Label(EditorStrings.About.StringAboutNVersion);
+        GUILayout.Space(5);
+
+        scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Width(500), GUILayout.Height(300));
+        GUILayout.Label(content);
+        GUILayout.EndScrollView();
+
+        if (GUILayout.Button(EditorStrings.About.StringAboutGitHub))
+        {
+            Application.OpenURL("https://github.com/lPinchol/UnityEditor-MiniExtension");
+        }
+    }
+}
+
 //      Editor String
 //Class containing the strings
 public class EditorStrings
@@ -579,6 +648,15 @@ public class EditorStrings
         public const string StringMenuLanguageSpanish                       = StringMainMenu + "/Language/Spanish";
         public const string StringScriptableObject1                         = StringMainMenu + "/Create/ScriptableObject";
         public const string StringScriptableObject2                         = "Assets/Create/ScriptableObject";
+        public const string StringAbout                                     = StringMainMenu + "/About " + EditorStrings.Data.StringVersionActual;
+    }
+
+    public class Data
+    {
+        public const string StringVersionActual                                = "0.0.11";
+
+
+        public static string _Languaje                                          = "ENG";
     }
 
     public class ScreenShot
@@ -623,31 +701,38 @@ public class EditorStrings
 
     public class RayCastDebug
     {
-        public static string StringRayCastDebugWarning                       = "RayCast Debug Warning";
-        public static string StringNeedRayCast                               = "You need an Raycast Debug to create a copy.";
-        public static string StringOK                                        = "OK";
-        public static string StringName                                      = "Name";
-        public static string StringGizmoSize                                 = "Gizmo Size";
-        public static string StringColorLine                                 = "Color Line";
-        public static string StringShowScale                                 = "Show Scale";
-        public static string StringPixelUnit                                 = "Pixel unit";
-        public static string StringAuxInfo1                                  = "       Distance from Start point: ";
-        public static string StringAuxInfo2                                  = " - Scale per pixel: ";
-        public static string StrinPX                                         = "px";
+        public static string StringRayCastDebugWarning                          = "RayCast Debug Warning";
+        public static string StringNeedRayCast                                  = "You need an Raycast Debug to create a copy.";
+        public static string StringOK                                           = "OK";
+        public static string StringName                                         = "Name";
+        public static string StringGizmoSize                                    = "Gizmo Size";
+        public static string StringColorLine                                    = "Color Line";
+        public static string StringShowScale                                    = "Show Scale";
+        public static string StringPixelUnit                                    = "Pixel unit";
+        public static string StringAuxInfo1                                     = "       Distance from Start point: ";
+        public static string StringAuxInfo2                                     = " - Scale per pixel: ";
+        public static string StrinPX                                            = "px";
 
-        public static string StringRCDebug                                   = "{e}[RayCast Debug] ";
-        public static string StringDebug01                                   = StringRCDebug + "Create RayCast Debug";
-        public static string StringDebug02                                   = StringRCDebug + "Add RayCast Debug";
+        public static string StringRCDebug                                      = "{e}[RayCast Debug] ";
+        public static string StringDebug01                                      = StringRCDebug + "Create RayCast Debug";
+        public static string StringDebug02                                      = StringRCDebug + "Add RayCast Debug";
     }
 
     public class ScriptableObject
     {
-        public static string StringScriptableObjectClass                    = "ScriptableObject Class";
-        public static string StringScriptableObjectCreate                   = "Create";
-        public static string StringScriptableObjectNewScripta               = "Create a new ScriptableObject";
+        public static string StringScriptableObjectClass                        = "ScriptableObject Class";
+        public static string StringScriptableObjectCreate                       = "Create";
+        public static string StringScriptableObjectNewScripta                   = "Create a new ScriptableObject";
 
-        public static string StringScriptableObjectDebug                    = "{e}[ScriptableObject Debug] ";
-        public static string StringScriptableObjectDebug01                  = StringScriptableObjectDebug + "Create Scriptable Object";
+        public static string StringScriptableObjectDebug                        = "{e}[ScriptableObject Debug] ";
+        public static string StringScriptableObjectDebug01                      = StringScriptableObjectDebug + "Create Scriptable Object";
+    }
+
+    public class About
+    {
+        public static string StringAboutTitle                                   = "About Editor Extensions";
+        public static string StringAboutNVersion                                = "> Note Version <";
+        public static string StringAboutGitHub                                  = "GitHub";
     }
 }
 
@@ -717,6 +802,10 @@ public class EditorTranslator
 
         EditorStrings.ScriptableObject.StringScriptableObjectDebug              = "{e}[ScriptableObject Debug] ";
         EditorStrings.ScriptableObject.StringScriptableObjectDebug01            = EditorStrings.ScriptableObject.StringScriptableObjectDebug + "Create Scriptable Object";
+
+        EditorStrings.About.StringAboutTitle                                    = "About Editor Extensions";
+        EditorStrings.About.StringAboutNVersion                                 = "> Note Version <";
+        EditorStrings.About.StringAboutGitHub                                   = "GitHub";
     }
 
     public static void Spanish()
@@ -781,6 +870,10 @@ public class EditorTranslator
 
         EditorStrings.ScriptableObject.StringScriptableObjectDebug              = "{e}[ScriptableObject Debug] ";
         EditorStrings.ScriptableObject.StringScriptableObjectDebug01            = EditorStrings.ScriptableObject.StringScriptableObjectDebug + "Creado Scriptable Object";
+
+        EditorStrings.About.StringAboutTitle                                    = "About Editor Extension";
+        EditorStrings.About.StringAboutNVersion                                 = "> Notas Version <";
+        EditorStrings.About.StringAboutGitHub                                   = "GitHub";
     }
 }
 
