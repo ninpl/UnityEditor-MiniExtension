@@ -1,3 +1,8 @@
+[0.0.12]
+- [RELEASE] Add unitypackage in Resources.
+- [UPDATE] Update About Visual.
+- [UPDATE] Update Readmy GitHub.
+
 [0.0.11]
 - [RELEASE] Add Changelog in Editor/About.
 - [UPDATE] Update Translator.

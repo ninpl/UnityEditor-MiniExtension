@@ -12,7 +12,7 @@ Descripcion: Pequeño añadido para el motor Unit3D,Añadiendole funcionalidad a
 
 1. [Visual Studio Tools](https://visualstudiogallery.msdn.microsoft.com/20b80b8c-659b-45ef-96c1-437828fe7cf2)
 
-## Caracteristicas
+## Caracteristicas [V. 1.0.12]
 
 > Actuales
 > 

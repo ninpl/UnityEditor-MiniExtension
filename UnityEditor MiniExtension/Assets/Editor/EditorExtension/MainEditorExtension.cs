@@ -5,6 +5,8 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Reflection;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 //      Main Menu
 //Class menus with different extensions
@@ -105,10 +107,7 @@ public class MainEditorExtension : MonoBehaviour
     public static void MenuAboutWin()
     {
         Load();
-        EditorWindow editorWindow = EditorWindow.GetWindow(typeof(AboutWindows));
-        editorWindow.autoRepaintOnSceneChange = true;
-        editorWindow.Show();
-        editorWindow.title = EditorStrings.About.StringAboutTitle;
+        AboutWindows.Init(true);
     }
 
 
@@ -590,44 +589,130 @@ public class ScriptableObjectWindows : EditorWindow
 //Class editor about windows log
 public class AboutWindows : EditorWindow
 {
-    public string content;
-    public Vector2 scrollPosition = new Vector2(50,50);
+    Texture2D header;
+    string changelogText = "";
+    Vector2 changelogScroll = Vector2.zero;
+    GUIStyle LabelStyle;
+    GUIStyle ButtonStyle;
+    GUIStyle iconButtonStyle;
+    Texture2D iconGitHub;
+    Texture2D iconLicense;
+    Texture2D iconUnity;
+    Texture2D iconPacket;
 
-    void Update()
+    public static string pathImages = "Assets/Editor/EditorExtension/Resources/";
+    public static string pathChangelogEng = "Assets/Editor/EditorExtension/Resources/ChangeLogEng.txt";
+    public static string pathChangelogEsp = "Assets/Editor/EditorExtension/Resources/ChangeLogEsp.txt";
+
+    public static bool Init(bool forceOpen)
     {
+        AboutWindows window;
+        window = EditorWindow.GetWindow<AboutWindows>(true, EditorStrings.About.StringAboutTitle, true);
+        window.minSize = new Vector2(530, 650);
+        window.maxSize = new Vector2(530, 650);
+        window.ShowUtility();
+        return true;
+    }
+
+    void OnEnable()
+    {
+        string versionColor = EditorGUIUtility.isProSkin ? "#ffffffee" : "#000000ee";
         switch (EditorStrings.Data._Languaje)
         {
             case "ENG":
-                TextAsset txt = (TextAsset)Resources.Load("ChangeLogENG", typeof(TextAsset));
-                content = txt.text;
+                changelogText = Resources.LoadAssetAtPath<TextAsset>(pathChangelogEng).text;
+                changelogText = Regex.Replace(changelogText, @"^[0-9].*", "<color=" + versionColor + "><size=13><b>Version $0</b></size></color>", RegexOptions.Multiline);
+                changelogText = Regex.Replace(changelogText, @"^-.*", "  $0", RegexOptions.Multiline);
                 break;
 
             case "ESP":
-                TextAsset txt2 = (TextAsset)Resources.Load("ChangeLogESP", typeof(TextAsset));
-                content = txt2.text;
+                changelogText = Resources.LoadAssetAtPath<TextAsset>(pathChangelogEsp).text;
+                changelogText = Regex.Replace(changelogText, @"^[0-9].*", "<color=" + versionColor + "><size=13><b>Version $0</b></size></color>", RegexOptions.Multiline);
+             changelogText = Regex.Replace(changelogText, @"^-.*", "  $0", RegexOptions.Multiline);
                 break;
 
             default:
-                TextAsset txt3 = (TextAsset)Resources.Load("ChangeLogENG", typeof(TextAsset));
-                content = txt3.text;
+                changelogText = Resources.LoadAssetAtPath<TextAsset>(pathChangelogEng).text;
+                changelogText = Regex.Replace(changelogText, @"^[0-9].*", "<color=" + versionColor + "><size=13><b>Version $0</b></size></color>", RegexOptions.Multiline);
+                changelogText = Regex.Replace(changelogText, @"^-.*", "  $0", RegexOptions.Multiline);
                 break;
         }
-        
+
+        header = Resources.LoadAssetAtPath<Texture2D>(pathImages + "headerEditorExt.jpg");
+        iconGitHub = Resources.LoadAssetAtPath<Texture2D>(pathImages + "icon-github.png");
+        iconLicense = Resources.LoadAssetAtPath<Texture2D>(pathImages + "icon-license.png");
+        iconUnity = Resources.LoadAssetAtPath<Texture2D>(pathImages + "icon-unity.png");
+        iconPacket = Resources.LoadAssetAtPath<Texture2D>(pathImages + "icon-packet.png");
     }
 
     void OnGUI()
     {
-        GUILayout.Label(EditorStrings.About.StringAboutNVersion);
-        GUILayout.Space(5);
+        if (LabelStyle == null)
+        {
+            LabelStyle = new GUIStyle(GUI.skin.label);
+            LabelStyle.richText = true;
+            LabelStyle.wordWrap = true;
+            ButtonStyle = new GUIStyle(GUI.skin.button);
+            ButtonStyle.richText = true;
+            iconButtonStyle = new GUIStyle(GUI.skin.button);
+            iconButtonStyle.normal.background = null;
+            iconButtonStyle.imagePosition = ImagePosition.ImageOnly;
+            iconButtonStyle.fixedWidth = 80;
+            iconButtonStyle.fixedHeight = 80;
+        }
 
-        scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Width(500), GUILayout.Height(300));
-        GUILayout.Label(content);
+        Rect headerRect = new Rect(0, 0, 530, 207);
+        GUI.DrawTexture(headerRect, header, ScaleMode.ScaleAndCrop, false);
+
+#if UNITY_4_3
+		GUILayout.Space(204);
+#else
+        GUILayout.Space(214);
+#endif
+
+        GUILayout.BeginVertical();
+
+        GUILayout.Label(EditorStrings.About.StringAboutNVersion, ButtonStyle);
+
+        changelogScroll = GUILayout.BeginScrollView(changelogScroll);
+        GUILayout.Label(changelogText, LabelStyle);
         GUILayout.EndScrollView();
 
-        if (GUILayout.Button(EditorStrings.About.StringAboutGitHub))
-        {
+        HR(0, 0);
+        GUILayout.BeginHorizontal();
+        GUILayout.Label(EditorStrings.About.StringAboutLink, ButtonStyle);
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        GUILayout.FlexibleSpace();
+
+        if (GUILayout.Button(iconGitHub, iconButtonStyle))
             Application.OpenURL("https://github.com/lPinchol/UnityEditor-MiniExtension");
-        }
+
+        if (GUILayout.Button(iconLicense, iconButtonStyle))
+            Application.OpenURL("https://github.com/lPinchol/UnityEditor-MiniExtension/blob/master/LICENSE");
+
+        if (GUILayout.Button(iconUnity, iconButtonStyle))
+            Application.OpenURL("http://unity3d.com/");
+
+        if (GUILayout.Button(iconPacket, iconButtonStyle))
+            Application.OpenURL("https://github.com/lPinchol/UnityEditor-MiniExtension/tree/master/Resources/unitypackage/");
+
+        GUILayout.FlexibleSpace();
+        GUILayout.EndHorizontal();
+
+        GUILayout.EndVertical();
+    }
+
+    void HR(int prevSpace, int nextSpace)
+    {
+        GUILayout.Space(prevSpace);
+        Rect r = GUILayoutUtility.GetRect(Screen.width, 2);
+        Color og = GUI.backgroundColor;
+        GUI.backgroundColor = Color.black;
+        GUI.Box(r, "");
+        GUI.backgroundColor = og;
+        GUILayout.Space(nextSpace);
     }
 }
 
@@ -653,7 +738,7 @@ public class EditorStrings
 
     public class Data
     {
-        public const string StringVersionActual                                = "0.0.11";
+        public const string StringVersionActual                                = "0.0.12";
 
 
         public static string _Languaje                                          = "ENG";
@@ -733,6 +818,7 @@ public class EditorStrings
         public static string StringAboutTitle                                   = "About Editor Extensions";
         public static string StringAboutNVersion                                = "> Note Version <";
         public static string StringAboutGitHub                                  = "GitHub";
+        public static string StringAboutLink                                    = "> Link <";
     }
 }
 
@@ -806,6 +892,7 @@ public class EditorTranslator
         EditorStrings.About.StringAboutTitle                                    = "About Editor Extensions";
         EditorStrings.About.StringAboutNVersion                                 = "> Note Version <";
         EditorStrings.About.StringAboutGitHub                                   = "GitHub";
+        EditorStrings.About.StringAboutLink                                     = "> Links <";
     }
 
     public static void Spanish()
@@ -874,6 +961,7 @@ public class EditorTranslator
         EditorStrings.About.StringAboutTitle                                    = "About Editor Extension";
         EditorStrings.About.StringAboutNVersion                                 = "> Notas Version <";
         EditorStrings.About.StringAboutGitHub                                   = "GitHub";
+        EditorStrings.About.StringAboutLink                                     = "> Vinculos <";
     }
 }
 
