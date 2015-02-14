@@ -1,7 +1,7 @@
 # UnityEditor-MiniExtension
 Mini extension para el editor de Unity3D
 
-Descripcion: Pequeño añadido para el motor Unit3D,Añadiendole funcionalidad al Editor
+Descripcion: Pequeño añadido para el motor Unity3D,Añadiendole funcionalidad al Editor base.
 
 ## Project Setup
 
