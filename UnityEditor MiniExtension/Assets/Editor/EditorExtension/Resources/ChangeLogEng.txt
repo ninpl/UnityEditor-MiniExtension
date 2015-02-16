@@ -1,3 +1,6 @@
+[0.0.13]
+- [RELEASE] Add Resource Checked.
+
 [0.0.12]
 - [RELEASE] Add unitypackage in Resources.
 - [UPDATE] Update About Visual.
