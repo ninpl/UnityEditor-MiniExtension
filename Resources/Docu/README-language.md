@@ -2,6 +2,6 @@ LANGUAGE DOC
 ======
 Documentation **language**
 
-[![Get it on Google Play](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/Resources/Img/ICON-eng.png](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/README-mainEng.md)
+[![English](https://github.com/lPinchol/UnityEditor-MiniExtension/blob/master/Resources/Img/ICON-eng.png)](https://github.com/lPinchol/UnityEditor-MiniExtension/blob/master/Resources/Docu/README-mainEng.md)
 
-[![Get it on Google Play](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/Resources/Img/ICON-esp.png)](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/README-mainEsp.md)
+[![Español](https://github.com/lPinchol/UnityEditor-MiniExtension/blob/master/Resources/Img/ICON-esp.png)](https://github.com/lPinchol/UnityEditor-MiniExtension/blob/master/Resources/Docu/README-mainEsp.md)
