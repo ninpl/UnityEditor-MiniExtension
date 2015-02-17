@@ -5,4 +5,4 @@ Mini extension para el editor de Unity3D
 
 # Select language
 
-* [Select](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/Resources/Docu/README-language.md)
+* [Select](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/README-language.md)
