@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ClassTemplateTest.cs" />
+    <Compile Include="Assets\Scripts\GeneralVar.cs" />
     <Compile Include="Assets\Scripts\Localization.cs" />
   </ItemGroup>
   <ItemGroup>

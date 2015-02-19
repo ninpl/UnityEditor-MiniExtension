@@ -118,6 +118,15 @@ public class MainEditorExtension : MonoBehaviour
         window.minSize = new Vector2(ResourceChecker.MinWidth2, 300);
     }
 
+    [MenuItem(EditorStrings.Setup.StringLocalizations, false, 6)]
+    static void MenuLocalizations()
+    {
+        EditorWindow editorWindow = EditorWindow.GetWindow(typeof(Localizations));
+        editorWindow.autoRepaintOnSceneChange = true;
+        editorWindow.Show();
+        editorWindow.title = "Localizations";
+    }
+
 
     //LANGUAGES
 
@@ -1171,6 +1180,18 @@ public class AboutWindows : EditorWindow
     }
 }
 
+//      Editor Localizations Windows
+//Class editor Localizations
+public class Localizations : EditorWindow
+{
+    public Language selection = Language.English;
+
+    void OnGUI()
+    {
+        selection = (Language)EditorGUILayout.EnumPopup("Select Language:", selection);
+    }
+}
+
 //      Editor String
 //Class containing the strings
 public class EditorStrings
@@ -1190,11 +1211,12 @@ public class EditorStrings
         public const string StringScriptableObject2                         = "Assets/Create/ScriptableObject";
         public const string StringAbout                                     = StringMainMenu + "/About " + EditorStrings.Data.StringVersionActual;
         public const string StringResourceChecked                           = StringMainMenu + "/Resource Checked";
+        public const string StringLocalizations                             = StringMainMenu + "/Localization";
     }
 
     public class Data
     {
-        public const string StringVersionActual                                = "0.0.13";
+        public const string StringVersionActual                                = "0.0.14";
 
 
         public static string _Languaje                                          = "ENG";
@@ -1275,6 +1297,11 @@ public class EditorStrings
         public static string StringAboutNVersion                                = "> Note Version <";
         public static string StringAboutGitHub                                  = "GitHub";
         public static string StringAboutLink                                    = "> Link <";
+    }
+
+    public class Localizations
+    { 
+    
     }
 }
 
@@ -1477,4 +1504,11 @@ public class MeshDetails
     {
 
     }
+}
+
+public enum Language
+{ 
+    English,
+    Spanish,
+    French
 }
