@@ -22,11 +22,11 @@ Description: Small added to the Unity3D engine, adding functionality to the base
 > - Added different languages for the (English / Spanish) editor
 > - Added Manager ScriptableObject
 > - Added About.
+> - Mini Localization
 
 > Future
 >
 > - Console
-> - Translator txt
 
 ### Screenshot
 

@@ -22,11 +22,11 @@ Descripcion: Pequeño añadido para el motor Unity3D,Añadiendole funcionalidad al 
 > - Añadido Idiomas diferentes para el editor(Ingles / Español)
 > - Añadido Manager ScriptableObject
 > - Añadido About.
+> - Mini Localization
 
 > Futuras
 >
 > - Console
-> - Translator txt
 
 ### Capturas
 
