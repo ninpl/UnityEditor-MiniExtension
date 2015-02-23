@@ -41,3 +41,6 @@ Crear un Debug RayCast
 
 Crear un asset (ScriptableObject)
 ![Screenshot software](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/Resources/Img/ScriptableObjectExt.png "ScriptableObjectExt")
+
+Usa localization
+![Screenshot software](https://raw.githubusercontent.com/lPinchol/UnityEditor-MiniExtension/master/Resources/Img/LocalizationExt.png "LocalizationExt")
