@@ -6,6 +6,6 @@ V.[0.0.14a][Unity4.6.2f1]
 
 ## Read Readme 
 
-# Select language
+# Select language / Read Readme
 
 * [Select](https://github.com/lPinchol/UnityEditor-MiniExtension/blob/master/Resources/Docu/README-language.md)
