@@ -1,0 +1,9 @@
+[Player]
+name=Test
+class=1
+
+[Options]
+resolution=1920x1080
+
+[Run]
+modes=Tester
