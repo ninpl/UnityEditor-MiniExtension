@@ -698,10 +698,12 @@ public class ResourceChecker : EditorWindow
                 return 8;
             case TextureFormat.BGRA32:          //  Format returned by iPhone camera
                 return 32;
+#if UNITY_4_6 || UNITY_4_6_1
             case TextureFormat.ATF_RGB_DXT1:    //  Flash-specific RGB DXT1 compressed color texture format.
             case TextureFormat.ATF_RGBA_JPG:    //  Flash-specific RGBA JPG-compressed color texture format.
             case TextureFormat.ATF_RGB_JPG:     //  Flash-specific RGB JPG-compressed color texture format.
                 return 0;                       //  Not supported yet
+#endif
         }
         return 0;
     }
