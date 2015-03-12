@@ -57,9 +57,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ClassTemplateTest.cs" />
-    <Compile Include="Assets\Scripts\GeneralVar.cs" />
-    <Compile Include="Assets\Scripts\Localization.cs" />
+    <Compile Include="Assets\Scripts\General\GeneralVar.cs" />
+    <Compile Include="Assets\Scripts\Internal\ClassTemplateTest.cs" />
+    <Compile Include="Assets\Scripts\Internal\IniCore.cs" />
+    <Compile Include="Assets\Scripts\Internal\Localization.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Editor\EditorExtension\Resources\ChangeLogEng.txt" />

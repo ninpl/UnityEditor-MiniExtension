@@ -1,3 +1,8 @@
+[0.0.15]
+- [RELEASE] Release 0.0.15 Init File.
+- [FIX] Arreglado Bug en localizacion (Unity 5.0.0)
+- [UPDATE] Añadido soporte Unity 5.0.0
+
 [0.0.14]
 - [RELEASE] Release 0.0.14 Localizacion.
 
