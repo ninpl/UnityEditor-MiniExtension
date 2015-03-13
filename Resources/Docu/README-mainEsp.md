@@ -23,6 +23,7 @@ Descripcion: Pequeño añadido para el motor Unity3D,Añadiendole funcionalidad al 
 > - Añadido Manager ScriptableObject
 > - Añadido About.
 > - Mini Localization
+> - Archivo Ini
 
 > Futuras
 >

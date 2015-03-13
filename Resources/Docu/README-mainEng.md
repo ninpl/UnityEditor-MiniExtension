@@ -23,6 +23,7 @@ Description: Small added to the Unity3D engine, adding functionality to the base
 > - Added Manager ScriptableObject
 > - Added About.
 > - Mini Localization
+> - Ini File
 
 > Future
 >
