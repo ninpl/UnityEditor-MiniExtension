@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-#if UNITY_4_6 || UNITY_4_6_1 || UNITY_5_0_0
+#if UNITY_4_6 || UNITY_4_6_1 || UNITY_5_0_0 || UNITY_5_0_1
 using UnityEngine.UI;
 #endif
 
