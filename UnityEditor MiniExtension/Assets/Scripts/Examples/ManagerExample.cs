@@ -7,6 +7,7 @@ public class ManagerExample : MonoBehaviour
     public GameObject panelMenu;
     public GameObject panelLocalization;
     public GameObject panelIni;
+    public GameObject panelPrecise;
 
     public void GLocalization()
     {
@@ -29,6 +30,18 @@ public class ManagerExample : MonoBehaviour
     public void BIni()
     {
         panelIni.SetActive(false);
+        panelMenu.SetActive(true);
+    }
+
+    public void GPrecise()
+    {
+        panelPrecise.SetActive(true);
+        panelMenu.SetActive(false);
+    }
+
+    public void BPrecise()
+    {
+        panelPrecise.SetActive(false);
         panelMenu.SetActive(true);
     }
 }
