@@ -1,3 +1,8 @@
+[0.0.16]
+- [RELEASE] Release 0.0.16 Precise UI.
+- [FIX] Arreglado error con VSTools
+- [UPDATE] Actualizado el paquete
+
 [0.0.15]
 - [RELEASE] Release 0.0.15 Init File.
 - [FIX] Arreglado Bug en localizacion (Unity 5.0.0)

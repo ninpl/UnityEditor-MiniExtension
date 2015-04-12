@@ -1305,6 +1305,11 @@ public class EditorStrings
     { 
     
     }
+
+    public class PreciseUI
+    { 
+    
+    }
 }
 
 //      Editor Translator
