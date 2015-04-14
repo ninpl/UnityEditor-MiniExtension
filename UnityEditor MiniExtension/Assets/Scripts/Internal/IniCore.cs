@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*  
+    Autor: Antonio Mateo Tomas (lPinchol)
+    Date: 14/04/2015
+    GitHub: https://github.com/lPinchol
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;

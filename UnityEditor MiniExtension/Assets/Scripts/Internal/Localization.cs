@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/*  
+    Autor: Antonio Mateo Tomas (lPinchol)
+    Date: 14/04/2015
+    GitHub: https://github.com/lPinchol
+*/
+
+using UnityEngine;
 using System.Collections;
 #if UNITY_4_6 || UNITY_4_6_1 || UNITY_5_0_0 || UNITY_5_0_1
 using UnityEngine.UI;
