@@ -56,9 +56,6 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
@@ -71,6 +68,9 @@
     <Compile Include="Assets\Scripts\Internal\ClassTemplateTest.cs" />
     <Compile Include="Assets\Scripts\Internal\IniCore.cs" />
     <Compile Include="Assets\Scripts\Internal\Localization.cs" />
+    <Compile Include="Assets\Scripts\Internal\Moba_Camera.cs" />
+    <Compile Include="Assets\Scripts\Internal\Moba_Camera_Boundaries.cs" />
+    <Compile Include="Assets\Scripts\Internal\Moba_Camera_Boundary.cs" />
     <Compile Include="Assets\Scripts\Internal\PreciseUI.cs" />
     <Compile Include="Assets\Scripts\Internal\PreciseUICheck.cs" />
   </ItemGroup>
