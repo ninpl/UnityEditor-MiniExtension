@@ -1,3 +1,7 @@
+[0.0.17]
+- [RELEASE] Release 0.0.17 Camera Settings.
+- [UPDATE] Actualizado el paquete
+
 [0.0.16]
 - [RELEASE] Release 0.0.16 Precise UI.
 - [FIX] Arreglado error con VSTools
