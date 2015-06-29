@@ -12,7 +12,7 @@ Descripcion: Pequeño añadido para el motor Unity3D,Añadiendole funcionalidad al 
 
 1. [Visual Studio Tools](https://visualstudiogallery.msdn.microsoft.com/20b80b8c-659b-45ef-96c1-437828fe7cf2)
 
-## Caracteristicas [V. 1.0.12]
+## Caracteristicas [V. 1.0.18]
 
 > Actuales
 > 
@@ -24,6 +24,7 @@ Descripcion: Pequeño añadido para el motor Unity3D,Añadiendole funcionalidad al 
 > - Añadido About.
 > - Mini Localization
 > - Archivo Ini
+> - Sistema decal
 
 > Futuras
 >

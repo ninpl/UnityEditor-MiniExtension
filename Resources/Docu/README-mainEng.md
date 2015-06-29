@@ -12,7 +12,7 @@ Description: Small added to the Unity3D engine, adding functionality to the base
 
 1. [Visual Studio Tools](https://visualstudiogallery.msdn.microsoft.com/20b80b8c-659b-45ef-96c1-437828fe7cf2)
 
-## Features [V. 1.0.12]
+## Features [V. 1.0.18]
 
 > Current
 > 
@@ -24,6 +24,7 @@ Description: Small added to the Unity3D engine, adding functionality to the base
 > - Added About.
 > - Mini Localization
 > - Ini File
+> - Decal System
 
 > Future
 >

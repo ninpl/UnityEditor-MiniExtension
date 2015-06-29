@@ -1,3 +1,7 @@
+[0.0.18]
+- [RELEASE] Release 0.0.18 Decal system.
+- [RELEASE] Unity5.1.0 Up.
+
 [0.0.17]
 - [RELEASE] Release 0.0.17 Camera Settings.
 - [UPDATE] Actualizado el paquete
