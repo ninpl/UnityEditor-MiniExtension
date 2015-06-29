@@ -1092,29 +1092,29 @@ public class AboutWindows : EditorWindow
         switch (EditorStrings.Data._Languaje)
         {
             case "ENG":
-                changelogText = Resources.LoadAssetAtPath<TextAsset>(pathChangelogEng).text;
+                changelogText = AssetDatabase.LoadAssetAtPath<TextAsset>(pathChangelogEng).text;
                 changelogText = Regex.Replace(changelogText, @"^[0-9].*", "<color=" + versionColor + "><size=13><b>Version $0</b></size></color>", RegexOptions.Multiline);
                 changelogText = Regex.Replace(changelogText, @"^-.*", "  $0", RegexOptions.Multiline);
                 break;
 
             case "ESP":
-                changelogText = Resources.LoadAssetAtPath<TextAsset>(pathChangelogEsp).text;
+                changelogText = AssetDatabase.LoadAssetAtPath<TextAsset>(pathChangelogEsp).text;
                 changelogText = Regex.Replace(changelogText, @"^[0-9].*", "<color=" + versionColor + "><size=13><b>Version $0</b></size></color>", RegexOptions.Multiline);
              changelogText = Regex.Replace(changelogText, @"^-.*", "  $0", RegexOptions.Multiline);
                 break;
 
             default:
-                changelogText = Resources.LoadAssetAtPath<TextAsset>(pathChangelogEng).text;
+                changelogText = AssetDatabase.LoadAssetAtPath<TextAsset>(pathChangelogEng).text;
                 changelogText = Regex.Replace(changelogText, @"^[0-9].*", "<color=" + versionColor + "><size=13><b>Version $0</b></size></color>", RegexOptions.Multiline);
                 changelogText = Regex.Replace(changelogText, @"^-.*", "  $0", RegexOptions.Multiline);
                 break;
         }
 
-        header = Resources.LoadAssetAtPath<Texture2D>(pathImages + "headerEditorExt.jpg");
-        iconGitHub = Resources.LoadAssetAtPath<Texture2D>(pathImages + "icon-github.png");
-        iconLicense = Resources.LoadAssetAtPath<Texture2D>(pathImages + "icon-license.png");
-        iconUnity = Resources.LoadAssetAtPath<Texture2D>(pathImages + "icon-unity.png");
-        iconPacket = Resources.LoadAssetAtPath<Texture2D>(pathImages + "icon-packet.png");
+        header = AssetDatabase.LoadAssetAtPath<Texture2D>(pathImages + "headerEditorExt.jpg");
+        iconGitHub = AssetDatabase.LoadAssetAtPath<Texture2D>(pathImages + "icon-github.png");
+        iconLicense = AssetDatabase.LoadAssetAtPath<Texture2D>(pathImages + "icon-license.png");
+        iconUnity = AssetDatabase.LoadAssetAtPath<Texture2D>(pathImages + "icon-unity.png");
+        iconPacket = AssetDatabase.LoadAssetAtPath<Texture2D>(pathImages + "icon-packet.png");
     }
 
     void OnGUI()
