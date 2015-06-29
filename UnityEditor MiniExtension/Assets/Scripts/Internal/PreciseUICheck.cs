@@ -6,7 +6,7 @@
 
 using UnityEngine;
 
-[AddComponentMenu("Event/Precise UI Check"), ExecuteInEditMode]
+[AddComponentMenu("EditorExt/Event/Precise UI Check"), ExecuteInEditMode]
 public class PreciseUICheck : MonoBehaviour 
 {
     [Range(0, 1), Tooltip("Below that value of alpha this component won't react to raycast.")]

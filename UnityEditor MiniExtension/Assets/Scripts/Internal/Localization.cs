@@ -11,7 +11,7 @@ using UnityEngine.UI;
 #endif
 
 //[ExecuteInEditMode]
-[AddComponentMenu ("Localization/Localization")]
+[AddComponentMenu("EditorExt/Localization/Localization")]
 public class Localization : MonoBehaviour 
 {
     private GameObject prefab;

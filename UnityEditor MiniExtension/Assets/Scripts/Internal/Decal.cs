@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 [RequireComponent( typeof(MeshFilter) )]
 [RequireComponent( typeof(MeshRenderer) )]
-[AddComponentMenu("Decal/Decal")]
+[AddComponentMenu("EditorExt/Decal/Decal")]
 public class Decal : MonoBehaviour {
 
 	public Material material;

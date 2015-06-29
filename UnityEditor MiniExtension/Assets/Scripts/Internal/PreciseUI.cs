@@ -9,7 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
-[AddComponentMenu("Event/Precise UI"), ExecuteInEditMode]
+[AddComponentMenu("EditorExt/Event/Precise UI"), ExecuteInEditMode]
 public class PreciseUI : GraphicRaycaster 
 {
     [Header("Precise UI test properties")]
