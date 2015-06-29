@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Examples\ManagerPreciseUI.cs" />
     <Compile Include="Assets\Scripts\General\GeneralVar.cs" />
     <Compile Include="Assets\Scripts\Internal\ClassTemplateTest.cs" />
+    <Compile Include="Assets\Scripts\Internal\Decal.cs" />
     <Compile Include="Assets\Scripts\Internal\IniCore.cs" />
     <Compile Include="Assets\Scripts\Internal\Localization.cs" />
     <Compile Include="Assets\Scripts\Internal\Moba_Camera.cs" />

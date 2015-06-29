@@ -135,6 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\EditorExtension\Custom\PreciseUICheckEditor.cs" />
+    <Compile Include="Assets\Editor\EditorExtension\DecalSystem\DecalBuilder.cs" />
+    <Compile Include="Assets\Editor\EditorExtension\DecalSystem\DecalEditor.cs" />
+    <Compile Include="Assets\Editor\EditorExtension\DecalSystem\DecalPolygon.cs" />
     <Compile Include="Assets\Editor\EditorExtension\MainEditorExtension.cs" />
     <Compile Include="Assets\Editor\EditorExtension\Templates\RayCastDebug.cs" />
   </ItemGroup>
