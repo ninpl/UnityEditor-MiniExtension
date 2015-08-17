@@ -45,7 +45,11 @@ public class MainEditorExtension : MonoBehaviour
         EditorWindow editorWindow = EditorWindow.GetWindow(typeof(ScreemShotInstant));
         editorWindow.autoRepaintOnSceneChange = true;
         editorWindow.Show();
+#if UNITY_5_1_2
+        editorWindow.titleContent.text = "Screenshot";
+#else
         editorWindow.title = "Screenshot";
+#endif
         Load();
     }
 
@@ -130,7 +134,11 @@ public class MainEditorExtension : MonoBehaviour
         EditorWindow editorWindow = EditorWindow.GetWindow(typeof(Localizations));
         editorWindow.autoRepaintOnSceneChange = true;
         editorWindow.Show();
+#if UNITY_5_1_2
+        editorWindow.titleContent.text = "Localizations";
+#else
         editorWindow.title = "Localizations";
+#endif
     }
 
 
