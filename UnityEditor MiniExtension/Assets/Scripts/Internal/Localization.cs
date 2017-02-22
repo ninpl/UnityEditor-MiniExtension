@@ -2,11 +2,12 @@
     Autor: Antonio Mateo Tomas (lPinchol)
     Date: 14/04/2015
     GitHub: https://github.com/lPinchol
+    Mod: 22/02/2017
 */
 
 using UnityEngine;
 using System.Collections;
-#if UNITY_4_6 || UNITY_4_6_1 || UNITY_5_0_0 || UNITY_5_0_1 || UNITY_5_1_0 || UNITY_5_1_2 || UNITY_5_1_3 || UNITY_5_3_4
+#if UNITY_4_6 || UNITY_4_6_1 || UNITY_5_0_0 || UNITY_5_0_1 || UNITY_5_1_0 || UNITY_5_1_2 || UNITY_5_1_3 || UNITY_5_3_4 || UNITY_5_5
 using UnityEngine.UI;
 #endif
 

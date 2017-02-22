@@ -48,7 +48,8 @@ public class MainEditorExtension : MonoBehaviour
 #if UNITY_5_1_2
         editorWindow.titleContent.text = "Screenshot";
 #else
-        editorWindow.title = "Screenshot";
+        GUIContent titleContents = new GUIContent("Screenshot");
+        editorWindow.titleContent = titleContents;
 #endif
         Load();
     }
@@ -137,7 +138,8 @@ public class MainEditorExtension : MonoBehaviour
 #if UNITY_5_1_2
         editorWindow.titleContent.text = "Localizations";
 #else
-        editorWindow.title = "Localizations";
+        GUIContent titleContents = new GUIContent("Localizations");
+        editorWindow.titleContent = titleContents;
 #endif
     }
 
