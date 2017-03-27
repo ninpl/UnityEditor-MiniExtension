@@ -89,31 +89,6 @@ public class MainEditorExtension : MonoBehaviour
         }
     }
 
-    //Class Scriptable Object Menu
-    public class ScriptableObjectMenu
-    {
-        [MenuItem(EditorStrings.Setup.StringScriptableObject1,false,5)]
-        [MenuItem(EditorStrings.Setup.StringScriptableObject2)]
-        public static void MenuScriptableObject()
-        {
-            Load();
-            var assembly = GetAssembly();
-            var allScriptableObjects = (from t in assembly.GetTypes()
-                                        where t.IsSubclassOf(typeof(ScriptableObject))
-                                        select t).ToArray();
-
-            var window = EditorWindow.GetWindow<ScriptableObjectWindows>(true, EditorStrings.ScriptableObject.StringScriptableObjectNewScripta, true);
-            window.ShowPopup();
-
-            window.Types = allScriptableObjects;
-        }
-
-        private static Assembly GetAssembly()
-        {
-            return Assembly.Load(new AssemblyName("Assembly-CSharp"));
-        }
-    }
-
     [MenuItem(EditorStrings.Setup.StringAbout, false, 99)]
     public static void MenuAboutWin()
     {
@@ -576,45 +551,6 @@ public class RayCastDebugEditor : Editor
         }
         _target.startPoint = Handles.PositionHandle(_target.startPoint, Quaternion.identity);
         _target.endPoint = Handles.PositionHandle(_target.endPoint, Quaternion.identity);
-    }
-}
-
-//      Editor ScriptableObjects
-//Class Scriptable objects windows
-public class ScriptableObjectWindows : EditorWindow
-{
-    private int selectedIndex;
-    private string[] names;
-    private Type[] types;
-
-    public Type[] Types
-    {
-        get { return types; }
-        set
-        {
-            types = value;
-            names = types.Select(t => t.FullName).ToArray();
-        }
-    }
-
-    public void OnGUI()
-    {
-        GUILayout.Label(EditorStrings.ScriptableObject.StringScriptableObjectClass);
-        selectedIndex = EditorGUILayout.Popup(selectedIndex, names);
-
-        if (GUILayout.Button(EditorStrings.ScriptableObject.StringScriptableObjectCreate))
-        {
-            var asset = ScriptableObject.CreateInstance(types[selectedIndex]);
-            ProjectWindowUtil.StartNameEditingIfProjectWindowExists(
-                asset.GetInstanceID(),
-                ScriptableObject.CreateInstance<EndNameEdit>(),
-                string.Format("{0}.asset", names[selectedIndex]),
-                AssetPreview.GetMiniThumbnail(asset),
-                null);
-
-            Debug.Log(EditorStrings.ScriptableObject.StringScriptableObjectDebug01);
-            Close();
-        }
     }
 }
 
@@ -1468,16 +1404,6 @@ public class EditorTranslator
         EditorStrings.About.StringAboutNVersion                                 = "> Notas Version <";
         EditorStrings.About.StringAboutGitHub                                   = "GitHub";
         EditorStrings.About.StringAboutLink                                     = "> Vinculos <";
-    }
-}
-
-//      Internal Scriptable Object
-//Class Internal Scriptable Object
-internal class EndNameEdit : EndNameEditAction
-{
-    public override void Action(int instanceId, string pathName, string resourceFile)
-    {
-        AssetDatabase.CreateAsset(EditorUtility.InstanceIDToObject(instanceId), AssetDatabase.GenerateUniqueAssetPath(pathName));
     }
 }
 

@@ -53,7 +53,8 @@ $RECYCLE.BIN/
 Assets/_Content/GUI
  
 # COPYRIGHTED / ASSET STORE
-Assets/NGUI
+/Assets/NGUI
+/Assets/NGUI.meta
  
 # GITEYE
 *.project

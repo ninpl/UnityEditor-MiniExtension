@@ -11,7 +11,7 @@ using System.Collections;
 using UnityEngine.UI;
 #endif
 
-//[ExecuteInEditMode]
+[ExecuteInEditMode]
 [AddComponentMenu("EditorExt/Localization/Localization")]
 public class Localization : MonoBehaviour 
 {

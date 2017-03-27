@@ -1,11 +1,13 @@
 ﻿/*  
-    Autor: Antonio Mateo Tomas (lPinchol)
+    Autor: Antonio Mateo (Moon Antonio)
     Date: 14/04/2015
-    GitHub: https://github.com/lPinchol
+    GitHub: https://github.com/MoonAntonio
 */
 
+#region Librerias
 using UnityEngine;
 using System.Collections;
+#endregion
 
 
 public class ManagerExample : MonoBehaviour 
