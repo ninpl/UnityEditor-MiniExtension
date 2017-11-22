@@ -23,6 +23,7 @@ namespace MoonAntonio.UEME
 		public const string NOMBRE_DIRECCION_BARRA_MDEFINE	= "MoonAntonio/Define Manager";
 		public const string NOMBRE_MENU_REINICIAR_NIVEL		= "Edit/Reiniciar #&P";
 		public const string NOMBRE_MENU_REINICIO_EDITOR		= "File/Reiniciar";
+		public const string NOMBRE_MENU_CONSOLA				= "MoonAntonio/Consola";
 		#endregion
 
 		#region MDefine
@@ -40,6 +41,10 @@ namespace MoonAntonio.UEME
 		public const string ADD_DEFINE_MDEFINE				= "Agregar Define";
 		public const string RENOMBRAR_MDEFINE				= "Renombrar";
 		public const string BORRAR_MDEFINE					= "Borrar";
+		#endregion
+
+		#region MConsola
+		public const string NOMBRE_CONSOLA					= "Consola";
 		#endregion
 	}
 }

@@ -11,6 +11,7 @@
 using UnityEngine;
 using UnityEditor;
 using MoonAntonio.UEME.MDefine;
+using MoonAntonio.UEME.MConsola;
 using System.Diagnostics;
 #endregion
 
@@ -65,6 +66,16 @@ namespace MoonAntonio.UEME
 			Process.Start(startInfo);
 
 			EditorApplication.Exit(0);
+		}
+		#endregion
+
+		#region Menu Consola
+		[MenuItem(StringsUEME.NOMBRE_MENU_CONSOLA)]
+		public static void Consola()
+		{
+			GameObject go = new GameObject();
+			go.name = StringsUEME.NOMBRE_CONSOLA;
+			go.gameObject.AddComponent<Consola>();
 		}
 		#endregion
 	}
