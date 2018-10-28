@@ -7,6 +7,12 @@
 [![GitHub stars](https://img.shields.io/github/stars/MoonAntonio/UnityEditor-MiniExtension.svg)](https://github.com/MoonAntonio/UnityEditor-MiniExtension/stargazers)
 
 # UnityEditor - MiniExtension
+Spanish:
 Mini extension para el editor de Unity3D
 
 Reconstruyendo
+
+English:
+Mini extension for the Unity3D editor
+
+Rebuilding
